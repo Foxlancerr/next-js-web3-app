@@ -1,23 +1,17 @@
-import { connectMetaMask } from "@/utils/metamaskConnect";
-import Image from "next/image";
-import metaMaskIcon from "@/assets/icons/metamask.svg";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import {
-  metamaskBoxCloseHandlar,
-  metamaskBoxOpenHandlar,
-} from "@/features/MetaMaskBox/MetaMaskBoxSlice";
+
 import FormLayout from "./shared/FormLayout";
-import { logInUser, storeUserDetails } from "@/features/User/UserSlice";
-import React, { useContext, useEffect } from "react";
+import { storeUserDetails } from "@/features/User/UserSlice";
+import React, { useContext} from "react";
 import { GlobalContext, IGlobalState } from "@/context/GlobalContext";
 import { WalletOptions } from "./wagmi-component/WalletOption";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount } from "wagmi";
 
 export default function MetamaskBox() {
   const dispatch = useDispatch();
   const { setIsMetaMaskBoxOpen } = useContext(GlobalContext) as IGlobalState;
-  const { isConnected, address, chain, } = useAccount();
+  const { isConnected, address, chain } = useAccount();
 
   React.useEffect(() => {
     if (isConnected) {

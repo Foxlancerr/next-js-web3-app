@@ -1,20 +1,18 @@
 "use client";
-import Image from "next/image";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import MetamaskIcon from "@/assets/icons/metamask.svg";
+
+import React, { useContext, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoCopyOutline } from "react-icons/io5";
 
 import { logOutUser } from "@/features/User/UserSlice";
 import { LuUserCircle } from "react-icons/lu";
 import { RootState } from "@/store/store";
-import { shortenEthAddress, connectMetaMask } from "@/utils/metamaskConnect";
+import { shortenEthAddress } from "@/utils/metamaskConnect";
 import { copyTextToClipboard } from "@/utils/clipCopyText";
 import { GlobalContext, IGlobalState } from "@/context/GlobalContext";
 import MetamaskBox from "./MetamaskBox";
 import { metamaskBoxOpenHandlar } from "@/features/MetaMaskBox/MetaMaskBoxSlice";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-// import { useWeb3ModalAccount } from "@web3modal/ethers/react";
+import { useAccount, useDisconnect } from "wagmi";
 
 function Header() {
   const {
@@ -26,16 +24,11 @@ function Header() {
     setIsMetaMaskBoxOpen,
   } = useContext(GlobalContext) as IGlobalState;
 
-  // const { address, isConnected } = useWeb3ModalAccount();
-  // console.log(isConnected,address)
 
   const {address,isConnected,} = useAccount();
   const {disconnect} = useDisconnect()
 
   const dispatch = useDispatch();
-  const isAuthentic = useSelector(
-    (state: RootState) => state.userReducer.isLogIn
-  );
   const userDetails = useSelector(
     (state: RootState) => state.userReducer.userData
   );
