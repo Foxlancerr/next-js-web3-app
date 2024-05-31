@@ -101,7 +101,7 @@ function Header() {
               <div className="relative">
                 <h2
                   onClick={() => setIsDropDownOpen((prev) => !prev)}
-                  className={`text-sm cursor-pointer rounded-full duration-150 ${
+                  className={`text-sm text-white cursor-pointer rounded-full duration-150 ${
                     isDropDownOpen && "bg-gray-300/50"
                   }`}
                 >
@@ -138,7 +138,7 @@ function Header() {
               </div>
 
               <div
-                className="p-2  text-blue-800 text-3xl  relative rounded-full "
+                className="p-2  text-white text-3xl  relative rounded-full "
                 onClick={() => dispatch(metamaskBoxOpenHandlar())}
               >
                 <LuUserCircle className="cursor-pointer object-cover hover:rotate-[15deg] hover:scale-[2] duration-200"></LuUserCircle>

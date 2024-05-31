@@ -23,6 +23,7 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isMetaMaskBoxOpen, setIsMetaMaskBoxOpen] = useState(false);
+  console.log(isMetaMaskBoxOpen)
   return (
     <GlobalContext.Provider
       value={{
