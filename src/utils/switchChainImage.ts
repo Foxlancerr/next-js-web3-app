@@ -1,5 +1,4 @@
 import { SmartChainImages } from "@/assets/constant";
-import { useAccount } from "wagmi";
 
 export function switchChainImage(chain: any) {
   switch (chain?.name) {
