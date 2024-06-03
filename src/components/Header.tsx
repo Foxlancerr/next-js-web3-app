@@ -15,6 +15,10 @@ import { metamaskBoxOpenHandlar } from "@/features/MetaMaskBox/MetaMaskBoxSlice"
 import { useAccount, useDisconnect } from "wagmi";
 import { GrTransaction } from "react-icons/gr";
 import Link from "next/link";
+import DropDownBox from "./shared/DropDownBox";
+import SmartChain from "./wagmi-component/SmartChain";
+import Image from "next/image";
+import { switchChainImage } from "@/utils/switchChainImage";
 
 function Header() {
   const {
@@ -22,11 +26,13 @@ function Header() {
     isDropDownOpen,
     setIsDropDownOpen,
     setIsCopied,
+    isSmartChainBoxOpen,
+    setIsSmartChainBoxOpen,
     isMetaMaskBoxOpen,
     setIsMetaMaskBoxOpen,
   } = useContext(GlobalContext) as IGlobalState;
 
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chain } = useAccount();
   const { disconnect } = useDisconnect();
 
   const dispatch = useDispatch();
@@ -36,7 +42,7 @@ function Header() {
 
   const handleCopyClick = () => {
     setIsDropDownOpen(false);
-    copyTextToClipboard(userDetails.address)
+    copyTextToClipboard(address as `0x${string}`)
       .then(() => {
         setIsCopied(true);
         setTimeout(() => {
@@ -91,7 +97,23 @@ function Header() {
           )}
 
           {isConnected ? (
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <Image
+                  src={switchChainImage(chain)}
+                  alt="image1"
+                  className="w-8 h-8 cursor-pointer rounded-full"
+                  onClick={() => setIsSmartChainBoxOpen((prev) => !prev)}
+                ></Image>
+                <DropDownBox
+                  isDropDownOpen={isSmartChainBoxOpen}
+                  setIsDropDownOpen={setIsSmartChainBoxOpen}
+                >
+                  <div className="grid grid-cols-1 gap-3">
+                    <SmartChain></SmartChain>
+                  </div>
+                </DropDownBox>
+              </div>
               <div className="relative">
                 <h2
                   onClick={() => setIsDropDownOpen((prev) => !prev)}
@@ -102,42 +124,40 @@ function Header() {
                   {shortenEthAddress(address)}
                 </h2>
 
-                {isDropDownOpen && (
-                  <span
-                    ref={dropdownRef}
-                    className=" text-sm flex gap-y-2 flex-col absolute top-6 right-0 py-2 px-3 rounded-lg w-max bg-slate-300/50"
+                <DropDownBox
+                  isDropDownOpen={isDropDownOpen}
+                  setIsDropDownOpen={setIsDropDownOpen}
+                >
+                  <h1
+                    className="flex gap-x-2 items-center cursor-pointer"
+                    onClick={handleCopyClick}
                   >
-                    <h1
-                      className="flex gap-x-2 items-center cursor-pointer"
-                      onClick={handleCopyClick}
-                    >
-                      Copy Address
-                      <span className="text-xl">
-                        <IoCopyOutline></IoCopyOutline>
-                      </span>
-                    </h1>
-                    <Link
-                      href="/transaction"
-                      className="flex gap-x-2 items-center cursor-pointer"
-                      onClick={handleCopyClick}
-                    >
-                      Perform Trs
-                      <span className="text-xl mr-auto">
-                        <GrTransaction></GrTransaction>
-                      </span>
-                    </Link>
-                    <h1
-                      className="cursor-pointer"
-                      onClick={() => {
-                        dispatch(logOutUser());
-                        disconnect();
-                        setIsDropDownOpen(false);
-                      }}
-                    >
-                      Disconnect Wallet
-                    </h1>
-                  </span>
-                )}
+                    Copy Address
+                    <span className="text-xl">
+                      <IoCopyOutline></IoCopyOutline>
+                    </span>
+                  </h1>
+                  <Link
+                    href="/transaction"
+                    className="flex gap-x-2 items-center cursor-pointer"
+                    onClick={handleCopyClick}
+                  >
+                    Perform Trs
+                    <span className="text-xl mr-auto">
+                      <GrTransaction></GrTransaction>
+                    </span>
+                  </Link>
+                  <h1
+                    className="cursor-pointer"
+                    onClick={() => {
+                      dispatch(logOutUser());
+                      disconnect();
+                      setIsDropDownOpen(false);
+                    }}
+                  >
+                    Disconnect Wallet
+                  </h1>
+                </DropDownBox>
               </div>
 
               <div

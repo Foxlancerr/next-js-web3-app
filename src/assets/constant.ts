@@ -1,11 +1,13 @@
+import { sepolia } from "wagmi/chains";
 import { EStatus, IProduct } from "@/types/ProductList.type";
 
 import WalletConnectImage from "./icons/wallet-connect.png";
 import MetaMaskImage from "./icons/metamask-logo.png";
-export const WalletsImages = [
-    WalletConnectImage,
-    MetaMaskImage,
-    ];
+import BnbChainLogo from "./icons/bnb-logo.png";
+import EtheriumChainLogo from "./icons/etherium-logo.jpg";
+import AvalancheChainLogo from "./icons/avalanche-logo.png";
+import SepoliaChainLogo from "./icons/sepholia-logo.png";
+export const WalletsImages = [WalletConnectImage, MetaMaskImage];
 
 export const productsListArr: IProduct[] = [
   {
@@ -78,4 +80,11 @@ export const productsListArr: IProduct[] = [
     price: 29,
     status: EStatus.CLOSE,
   },
+];
+
+export const SmartChainImages = [
+  EtheriumChainLogo,
+  SepoliaChainLogo,
+  BnbChainLogo,
+  AvalancheChainLogo,
 ];

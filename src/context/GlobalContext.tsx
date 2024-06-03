@@ -15,15 +15,18 @@ export interface IGlobalState {
   setIsMetaMaskBoxOpen: Dispatch<SetStateAction<boolean>>;
   selectedBoxId: number | null;
   setSelectedBoxId: Dispatch<SetStateAction<number | null>>;
+  isSmartChainBoxOpen: Boolean;
+  setIsSmartChainBoxOpen: Dispatch<SetStateAction<boolean>>;
 }
 export const GlobalContext = createContext<IGlobalState | undefined>(undefined);
 
 export function GlobalContextProvider({ children }: { children: ReactNode }) {
   const [selectedBoxId, setSelectedBoxId] = useState<null | number>(null);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [isSmartChainBoxOpen, setIsSmartChainBoxOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isMetaMaskBoxOpen, setIsMetaMaskBoxOpen] = useState(false);
-  console.log(isMetaMaskBoxOpen)
+
   return (
     <GlobalContext.Provider
       value={{
@@ -35,6 +38,8 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
         setIsCopied,
         selectedBoxId,
         setSelectedBoxId,
+        isSmartChainBoxOpen,
+        setIsSmartChainBoxOpen,
       }}
     >
       {children}
