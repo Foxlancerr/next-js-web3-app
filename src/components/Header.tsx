@@ -13,6 +13,8 @@ import { GlobalContext, IGlobalState } from "@/context/GlobalContext";
 import MetamaskBox from "./MetamaskBox";
 import { metamaskBoxOpenHandlar } from "@/features/MetaMaskBox/MetaMaskBoxSlice";
 import { useAccount, useDisconnect } from "wagmi";
+import { GrTransaction } from "react-icons/gr";
+import Link from "next/link";
 
 function Header() {
   const {
@@ -24,9 +26,8 @@ function Header() {
     setIsMetaMaskBoxOpen,
   } = useContext(GlobalContext) as IGlobalState;
 
-
-  const {address,isConnected,} = useAccount();
-  const {disconnect} = useDisconnect()
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
 
   const dispatch = useDispatch();
   const userDetails = useSelector(
@@ -98,7 +99,6 @@ function Header() {
                     isDropDownOpen && "bg-gray-300/50"
                   }`}
                 >
-                  
                   {shortenEthAddress(address)}
                 </h2>
 
@@ -116,6 +116,16 @@ function Header() {
                         <IoCopyOutline></IoCopyOutline>
                       </span>
                     </h1>
+                    <Link
+                      href="/transaction"
+                      className="flex gap-x-2 items-center cursor-pointer"
+                      onClick={handleCopyClick}
+                    >
+                      Perform Trs
+                      <span className="text-xl mr-auto">
+                        <GrTransaction></GrTransaction>
+                      </span>
+                    </Link>
                     <h1
                       className="cursor-pointer"
                       onClick={() => {
@@ -141,9 +151,10 @@ function Header() {
             // here i will used the web3Model button to show the box having differents wallets
             <span>
               {/* <w3m-button /> */}
-              <button 
-              className="text-white bg-blue-700 px-5 py-2 rounded-full"
-              onClick={() => setIsMetaMaskBoxOpen(true)}>
+              <button
+                className="text-white bg-blue-700 px-5 py-2 rounded-full"
+                onClick={() => setIsMetaMaskBoxOpen(true)}
+              >
                 Connect
               </button>
             </span>

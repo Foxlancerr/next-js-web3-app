@@ -3,7 +3,7 @@ import { deleteProductFromList } from "@/features/TodoListProduct/TodoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import type { IProduct } from "@/types/ProductList.type";
-import { useContext, type Dispatch, type SetStateAction } from "react";
+import { useContext} from "react";
 
 
 import { MdEdit } from "react-icons/md";

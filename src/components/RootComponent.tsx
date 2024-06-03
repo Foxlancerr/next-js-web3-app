@@ -15,7 +15,6 @@ import { FaPlus } from "react-icons/fa6";
 import Table from "@/components/Table";
 import DialogBox from "@/components/DialogBox";
 import { IProduct } from "@/types/ProductList.type";
-import MetamaskBox from "./MetamaskBox";
 import UserDetailBox from "./UserDetailBox";
 import { GlobalContext, IGlobalState } from "@/context/GlobalContext";
 import { useAccount } from "wagmi";
@@ -34,9 +33,7 @@ export default function RootComponent() {
     (state: RootState) => state.dialogBoxReducer.isModelBox
   );
 
-  const isAuthentic = useSelector(
-    (state: RootState) => state.userReducer.isLogIn
-  );
+ 
 
   function handleSave(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
