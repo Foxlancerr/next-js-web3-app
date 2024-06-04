@@ -27,7 +27,7 @@ export const requestToSmartContract = async () => {
     }
   } catch (err) {
     if (err) {
-        console.log("errrlllllllllllll>",err);
+        console.log("errr",err);
         throw err;
 
     }
