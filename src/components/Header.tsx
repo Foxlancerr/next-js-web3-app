@@ -54,29 +54,29 @@ function Header() {
       });
   };
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  // const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        event.target instanceof Node &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        setIsDropDownOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       dropdownRef.current &&
+  //       event.target instanceof Node &&
+  //       !dropdownRef.current.contains(event.target)
+  //     ) {
+  //       setIsDropDownOpen(false);
+  //     }
+  //   };
 
-    if (isDropDownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
+  //   if (isDropDownOpen) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isDropDownOpen]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isDropDownOpen]);
 
   return (
     <>
@@ -140,7 +140,6 @@ function Header() {
                   <Link
                     href="/transaction"
                     className="flex gap-x-2 items-center cursor-pointer"
-                    onClick={handleCopyClick}
                   >
                     Perform Trs
                     <span className="text-xl mr-auto">

@@ -1,3 +1,4 @@
+import { bscTestnet } from 'wagmi/chains';
 import { SmartChainImages } from "@/assets/constant";
 
 export function switchChainImage(chain: any) {
@@ -8,7 +9,7 @@ export function switchChainImage(chain: any) {
     case "Sepolia":
       return SmartChainImages[1];
       break;
-    case "BNB Smart Chain":
+    case "Binance Smart Chain Testnet":
       return SmartChainImages[2];
       break;
     case "Avalanche":
