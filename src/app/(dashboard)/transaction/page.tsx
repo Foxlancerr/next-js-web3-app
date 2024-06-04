@@ -1,10 +1,10 @@
 "use client";
-import FormLayout from "@/components/shared/FormLayout";
 import { sendTransaction } from "@/utils/transaction";
 import Link from "next/link";
 import React, { FormEvent, useState } from "react";
 
 function Transaction() {
+ 
   const [loading, setLoading] = useState<boolean>(false);
   const handleSubmitAmount = (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
@@ -21,6 +21,7 @@ function Transaction() {
   if (loading)
     return (
       <div className="flex justify-center items-center h-screen w-full">
+       
         <h1 className="text-center text-3xl">Loading...</h1>
       </div>
     );
@@ -51,9 +52,9 @@ function Transaction() {
           </button>
         </form>
 
-        <Link href={'/'}
-        className="underline text-blue-500"
-        >Go to Home Page</Link>
+        <Link href={"/"} className="underline text-blue-500">
+          Go to Home Page
+        </Link>
       </div>
     );
 }

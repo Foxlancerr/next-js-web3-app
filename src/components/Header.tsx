@@ -19,6 +19,7 @@ import DropDownBox from "./shared/DropDownBox";
 import SmartChain from "./wagmi-component/SmartChain";
 import Image from "next/image";
 import { switchChainImage } from "@/utils/switchChainImage";
+import UserDetailBox from "./UserDetailBox";
 
 function Header() {
   const {
@@ -34,7 +35,9 @@ function Header() {
 
   const { address, isConnected, chain } = useAccount();
   const { disconnect } = useDisconnect();
-
+  const isUserDetailBoxOpen = useSelector(
+    (state: RootState) => state.metaMaskBoxReducer.isBoxOpen
+  );
   const dispatch = useDispatch();
   const userDetails = useSelector(
     (state: RootState) => state.userReducer.userData
@@ -54,33 +57,10 @@ function Header() {
       });
   };
 
-  // const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       dropdownRef.current &&
-  //       event.target instanceof Node &&
-  //       !dropdownRef.current.contains(event.target)
-  //     ) {
-  //       setIsDropDownOpen(false);
-  //     }
-  //   };
-
-  //   if (isDropDownOpen) {
-  //     document.addEventListener("mousedown", handleClickOutside);
-  //   } else {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   }
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [isDropDownOpen]);
-
   return (
     <>
       {isMetaMaskBoxOpen && <MetamaskBox />}
+      {isUserDetailBoxOpen && <UserDetailBox />}
       <nav
         style={{
           background: " #232B2B",

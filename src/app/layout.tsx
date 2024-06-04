@@ -6,6 +6,7 @@ import { type ReactNode } from "react";
 import { Providers } from "./providers";
 import { GlobalContextProvider } from "@/context/GlobalContext";
 import ReduxProvider from "@/store/ReduxProvider";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout(props: { children: ReactNode }) {
       <body className={inter.className}>
         <GlobalContextProvider>
           <ReduxProvider>
-            <Providers>{props.children}</Providers>
+            <Providers>
+              <Header></Header>
+              {props.children}
+            </Providers>
           </ReduxProvider>
         </GlobalContextProvider>
       </body>
